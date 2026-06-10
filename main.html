@@ -1,33 +1,44 @@
+//your JS code here. If required.
 <!DOCTYPE html>
-
 <html>
-
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
-<body>	
-	<script>
-		function secondHighest(arr) {
-			//Write your code here
-			arr.sort((a,b)=>a-b);
-			return arr[arr.length-2];			
-		}
+<body>
+    <script>
+        function secondHighest(numbers) {
+            let largestValue = -Infinity;
+            let secondLargestValue = -Infinity;
 
-		function Main() {
-			var n = prompt("Enter the number of elements");
-			var arr = [];
-			for (var i = 0; i < n; i++) {
-				arr[i] = prompt("Enter element " + (i+1));
-			}
-			alert(secondHighest(arr));
-		}
-		Main();
-	</script>
+            for (let value of numbers) {
+                value = Number(value);
 
-    <script type="text/javascript" src="./script.js">
-</script>
+                if (value > largestValue) {
+                    secondLargestValue = largestValue;
+                    largestValue = value;
+                } else if (value > secondLargestValue && value < largestValue) {
+                    secondLargestValue = value;
+                }
+            }
 
+            return secondLargestValue;
+        }
+
+        function startProgram() {
+            let totalElements = Number(prompt("Enter the number of elements"));
+            let inputValues = [];
+
+            for (let index = 0; index < totalElements; index++) {
+                inputValues.push(prompt("Enter element " + (index + 1)));
+            }
+
+            alert(findSecondLargest(inputValues));
+        }
+
+        startProgram();
+    </script>
+
+    <script type="text/javascript" src="./script.js"></script>
 </body>
-
 </html>
